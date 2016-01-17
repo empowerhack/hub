@@ -1,0 +1,7 @@
+- name: redis container
+  docker:
+    name: redis
+    image: redis
+    state: started
+    ports:
+      - "6379:6379"

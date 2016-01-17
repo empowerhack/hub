@@ -1,0 +1,19 @@
+---
+- hosts: all
+  sudo: true
+  vars_files:
+    - vars/all.yml
+  roles:
+    - server
+    - vagrant_local
+    #- nginx
+    #- apache
+    #- mysql
+    #- php
+    #- xdebug
+    #- xhprof # http://www.lornajane.net/posts/2013/installing-xhgui
+    - docker
+    #- blackfire
+    #- npm
+    #- ruby
+    - app

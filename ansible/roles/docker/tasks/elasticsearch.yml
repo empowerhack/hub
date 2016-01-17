@@ -1,0 +1,7 @@
+- name: elasticsearch container
+  docker:
+    name: elasticsearch
+    image: elasticsearch
+    state: started
+    ports:
+      - "9200:9200"

@@ -1,0 +1,7 @@
+- name: postgres container
+  docker:
+    name: postgres
+    image: postgres
+    state: started
+    ports:
+      - "5432:5432"

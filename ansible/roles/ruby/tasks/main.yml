@@ -1,0 +1,7 @@
+- name: Install ruby development headers
+  sudo: yes
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - ruby-dev
+
+- include: jekyll.yml

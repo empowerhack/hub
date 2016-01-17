@@ -1,0 +1,4 @@
+.mvn/
+mvn*
+target/
+.vagrant/

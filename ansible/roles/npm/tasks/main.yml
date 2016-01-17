@@ -1,0 +1,10 @@
+- name: install npm
+  apt:  pkg=npm state=present
+
+- name: install global node packages
+  npm: name={{item}} global=yes
+  with_items:
+    - bower
+    - grunt-cli
+    - express
+    - socket.io

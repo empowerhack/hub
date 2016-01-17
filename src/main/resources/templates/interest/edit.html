@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Interest:: EmpowerHack Hub</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="container">
+
+    <div class="row">
+        <div class="card">
+            <form action="/account/interest" th:action="@{/account/interest}" th:object="${interest}" method="post">
+                <div class="card-header">
+                    Add new interest
+                </div>
+                <div class="card-block">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? has-danger">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="name" th:field="*{name}" />
+                            <span class="input-group-btn">
+                                <input type="submit" class="btn btn-primary">Add</input>
+                            </span>
+                        </div>
+                        <p class="text-muted text-sm-right">Example: php, java, ruby, javascript</p>
+                        <small class="text-help has-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">interest Error</small>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                Current Interests
+            </div>
+            <div class="card-block">
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="interest : ${interests}">
+                        <a class="btn btn-danger btn-sm" th:href="@{'/account/interest/delete/' + ${interest.uid}}">
+                            <i class="fa fa-minus-square"></i>
+                        </a>
+                        <span th:text="${interest.name}">interest</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer text-muted">
+                <p>Total Interests <span th:text="${total}">-</span></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

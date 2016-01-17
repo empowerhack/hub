@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Members:: EmpowerHack Hub</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="container">
+    <h2>Members</h2>
+
+    <nav class="navbar navbar-light bg-faded">
+        <ul class="nav navbar-nav">
+            <li class="nav-item active">
+                <span class="nav-link">Total <span th:text="${total}"></span> results</span>
+            </li>
+        </ul>
+        <form class="form-inline pull-xs-right">
+            <input class="form-control" disabled="disabled" type="text" placeholder="Search" />
+            <button class="btn btn-success-outline disabled" type="submit">Search</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target=".member-add">Add</button>
+        </form>
+    </nav>
+
+    <div class="results">
+        <div class="card" th:each="member : ${members}">
+            <div class="card-header">
+                <span class="pull-right visibility">
+                    <i class="fa fa-lock" th:if="${member.keepPrivate}"></i>
+                    <i class="fa fa-unlock" th:unless="${member.keepPrivate}"></i>
+                </span>
+                <i class="fa fa-user fa-1x"></i>
+                <span th:text="${member.username}">Name</span>
+                <span class="text-muted">
+                    (
+                    Joined on <span th:text="${#dates.format(member.createdOn, 'dd/MM/yyyy HH:mm')}">-</span> /
+                    Last updated on <span th:text="${#dates.format(member.updatedOn, 'dd/MM/yyyy HH:mm')}">-</span>
+                    )
+                </span>
+            </div>
+            <div class="card-block">
+                <span class="pull-right social">
+                    <span th:each="social : ${member.socials}">
+                        <a th:href="'http://' + ${social.url}" class="btn btn-success-outline" th:if="${social.provider == 'LinkedIn'}">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                        <a th:href="'http://' + ${social.url}" class="btn btn-success-outline" th:if="${social.provider == 'Facebook'}">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a th:href="'http://' + ${social.url}" class="btn btn-success-outline" th:if="${social.provider == 'Twitter'}">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </span>
+                </span>
+                <h4 class="card-title" th:text="${member.email}">Email</h4>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item active">SKILLS</li>
+                        <li class="list-group-item" th:each="skill : ${member.skills}">
+                            <span th:text="${skill.name}">skill</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item active">INTERESTS</li>
+                        <li class="list-group-item" th:each="interest : ${member.interests}">
+                            <span th:text="${interest.name}">interest</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-footer text-muted">
+                Availability
+                <progress class="progress progress-success" max="100" th:value="${member.availability}" th:text="${member.availability}">0%</progress>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

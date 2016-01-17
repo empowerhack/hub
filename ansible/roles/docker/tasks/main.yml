@@ -1,0 +1,13 @@
+- name: install pip
+  shell: curl https://bootstrap.pypa.io/get-pip.py | python -
+
+- name: install docker py
+  shell: pip install docker-py
+
+- name: install docker
+  shell: curl -sSL https://get.docker.com/ | sh && sudo usermod -aG docker vagrant
+
+- include: mysql.yml
+- include: elasticsearch.yml
+#- include: postgres.yml
+#- include: redis.yml
