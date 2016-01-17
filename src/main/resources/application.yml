@@ -1,18 +1,43 @@
 version: v0.2.35 # Should be managed by CI, but currently matching Issue Number
 
-server:
-  port: ${port:8081}
-debug: true
 spring:
   resources:
     chain:
       enabled: true
+server:
+  port: ${port:8081}
+debug: true
 security:
   sessions: ALWAYS
   oauth2:
     client:
       clientId: f6d7dfacabf6a0fbb9f6
       clientSecret: 57c225a423eeafdee62b274e84292608f04f1d49
+      accessTokenUri: https://github.com/login/oauth/access_token
+      userAuthorizationUri: https://github.com/login/oauth/authorize
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: https://api.github.com/user
+#      preferTokenInfo: false
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+---
+spring:
+  profiles: production
+  resources:
+    chain:
+      enabled: true
+server:
+  port: ${port:80}
+debug: true
+security:
+  sessions: ALWAYS
+  oauth2:
+    client:
+      clientId: 2d71e7eab45e389e09b4
+      clientSecret: cc3b263f01208e8d0dcabe0953cfaf2295127409
       accessTokenUri: https://github.com/login/oauth/access_token
       userAuthorizationUri: https://github.com/login/oauth/authorize
       clientAuthenticationScheme: form
