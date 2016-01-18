@@ -36,11 +36,21 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/member}" href="/member">Members</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Projects</a>
+            <li class="nav-item dropdown" th:if="${currentUser.username}">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                   role="button" aria-haspopup="true" aria-expanded="false">Project</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" th:href="@{/project}">List</a>
+                    <a class="dropdown-item" th:href="@{/project/add}">Add</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Calendar</a>
+            <li class="nav-item dropdown" th:if="${currentUser.username}">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                   role="button" aria-haspopup="true" aria-expanded="false">Calendar</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" th:href="@{/project}">List</a>
+                    <a class="dropdown-item" th:href="@{/project/add}">Add</a>
+                </div>
             </li>
             <li class="nav-item dropdown" th:if="${currentUser.username}">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
@@ -82,7 +92,7 @@
 </div>
 
 <nav class="navbar navbar-fixed-bottom navbar-light bg-faded alert-warning" role="alert">
-    <strong>Prototype v0.2.0</strong> Currently in Prototype
+    <strong>Prototype <span th:text="${version}"></span></strong> Currently in Prototype
 </nav>
 
 </body>
