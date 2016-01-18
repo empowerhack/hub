@@ -10,7 +10,7 @@
 <div layout:fragment="content" class="container">
 
     <div class="card">
-        <form action="/account/profile" th:action="@{/account/profile}" th:object="${member}" method="post">
+        <form th:action="@{/account/profile}" th:object="${member}" method="post">
             <div class="card-header">
                 Update Profile
             </div>
