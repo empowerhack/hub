@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Projects:: EmpowerHack Hub</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="container">
+    <h2>Projects</h2>
+
+    <nav class="navbar navbar-light bg-faded">
+        <ul class="nav navbar-nav">
+            <li class="nav-item active">
+                <span class="nav-link">Total <span th:text="${total}"></span> results</span>
+            </li>
+        </ul>
+        <form class="form-inline pull-xs-right">
+            <input class="form-control" disabled="disabled" type="text" placeholder="Search" />
+            <button class="btn btn-success-outline disabled" type="submit">Search</button>
+        </form>
+    </nav>
+
+    <div class="results">
+        <div class="card" th:each="project : ${projects}">
+            <div class="card-header">
+                <span class="pull-right">
+                    <a th:href="@{'/project/edit/' + ${project.uid}}" class="btn btn-danger-outline btn-sm">
+                        <i class="fa fa-pencil-square fa-1x"></i>
+                    </a>
+                </span>
+                <i class="fa fa-list fa-1x"></i>
+                <span th:text="${project.name}">Name</span>
+            </div>
+            <div class="card-block">
+                <span class="pull-right social">
+                    <a th:href="'http://' + ${project.website}" class="btn btn-success-outline" th:if="${project.website != ''}">
+                        <i class="fa fa-globe"></i>
+                    </a>
+                    <a th:href="'http://' + ${project.github}" class="btn btn-success-outline" th:if="${project.github != ''}">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </span>
+                <h5 th:text="${project.description}">Description</h5>
+            </div>
+            <div class="card-footer text-muted">
+                <span class="text-muted">
+                    (
+                    Created on <span th:text="${#dates.format(project.createdOn, 'dd/MM/yyyy HH:mm')}">-</span> /
+                    Last updated on <span th:text="${#dates.format(project.updatedOn, 'dd/MM/yyyy HH:mm')}">-</span>
+                    )
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
