@@ -4,6 +4,16 @@ spring:
   resources:
     chain:
       enabled: true
+  jpa:
+    show-sql: true
+  h2:
+    console:
+      enabled: true # /h2-console for h2 web interface
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:hubdb
+    username: sa
+    password:
 server:
   port: ${port:8081}
 debug: true
