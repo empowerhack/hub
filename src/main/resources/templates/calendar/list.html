@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Calendar:: EmpowerHack Hub</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="container">
+    <h2>Calendar</h2>
+
+    <nav class="navbar navbar-light bg-faded">
+        <ul class="nav navbar-nav">
+            <li class="nav-item active">
+                <span class="nav-link">Total <span th:text="${total}"></span> results</span>
+            </li>
+        </ul>
+        <form class="form-inline pull-xs-right">
+            <input class="form-control" disabled="disabled" type="text" placeholder="Search" />
+            <button class="btn btn-success-outline disabled" type="submit">Search</button>
+        </form>
+    </nav>
+
+    <div class="results">
+        <div class="card" th:each="calendar : ${calendars}">
+            <div class="card-header">
+                <span class="pull-right">
+                    <a th:href="@{'/calendar/edit/' + ${calendar.uid}}" class="btn btn-danger-outline btn-sm">
+                        <i class="fa fa-pencil-square fa-1x"></i>
+                    </a>
+                </span>
+                <i class="fa fa-list fa-1x"></i>
+                <span th:text="${calendar.name}">Name</span>
+            </div>
+            <div class="card-block">
+                <h5 th:text="${calendar.description}">Description</h5>
+                <p><i class="fa fa-calendar"></i> <span th:text="${calendar.date}">Date</span></p>
+                <p><i class="fa fa-clock-o"></i> <span th:text="${calendar.duration}">Duration</span></p>
+                <p><i class="fa fa-map-marker"></i> <span th:text="${calendar.location}">Location</span></p>
+            </div>
+            <div class="card-footer text-muted">
+                <span class="text-muted">
+                    (
+                    Created on <span th:text="${#dates.format(calendar.createdOn, 'dd/MM/yyyy HH:mm')}">-</span> /
+                    Last updated on <span th:text="${#dates.format(calendar.updatedOn, 'dd/MM/yyyy HH:mm')}">-</span>
+                    )
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -48,8 +48,10 @@
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
                    role="button" aria-haspopup="true" aria-expanded="false">Calendar</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" th:href="@{/project}">List</a>
-                    <a class="dropdown-item" th:href="@{/project/add}">Add</a>
+                    <a class="dropdown-item" th:href="@{/calendar}">List</a>
+                    <a class="dropdown-item" th:href="@{/calendar/add}">Add</a>
+                    <a class="dropdown-item" th:href="@{/calendar}">Past Events</a>
+                    <a class="dropdown-item" th:href="@{/calendar}">Future Events</a>
                 </div>
             </li>
             <li class="nav-item dropdown" th:if="${currentUser.username}">
