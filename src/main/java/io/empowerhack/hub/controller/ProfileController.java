@@ -25,9 +25,6 @@ public class ProfileController {
     public String edit(Model model) {
 
         Member member  = this.memberService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-        if (member == null) {
-            member = new Member(SecurityContextHolder.getContext().getAuthentication().getName());
-        }
 
         model.addAttribute("member", member);
 

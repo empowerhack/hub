@@ -32,12 +32,6 @@ public class SocialController {
 
         Member member  = this.memberService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        if (member == null) {
-            redirectAttributes.addFlashAttribute("error", "You must complete your Profile first");
-
-            return "redirect:/account/profile";
-        }
-
         model.addAttribute("socials", member.getSocials());
         model.addAttribute("total", member.getSocials().size());
         model.addAttribute("social", new Social());
@@ -49,12 +43,6 @@ public class SocialController {
     public String save(@Valid Social social, BindingResult bindingResult, final RedirectAttributes redirectAttributes, Model model) {
 
         Member member  = this.memberService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-
-        if (member == null) {
-            redirectAttributes.addFlashAttribute("error", "You must complete your Profile first");
-
-            return "redirect:/account/profile";
-        }
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("error", "An error occurred please try again");
@@ -73,14 +61,6 @@ public class SocialController {
 
     @RequestMapping(value = {"/account/social/delete/{uid}"}, method = RequestMethod.GET)
     public String delete(@PathVariable("uid") String uid, final RedirectAttributes redirectAttributes) {
-
-        Member member  = this.memberService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-
-        if (member == null) {
-            redirectAttributes.addFlashAttribute("error", "You must complete your Profile first");
-
-            return "redirect:/account/profile";
-        }
 
         this.socialService.delete(uid);
 
