@@ -17,7 +17,7 @@ public class ProjectService {
 
     public List<Project> findAll() {
         List<Project> project = new ArrayList<>();
-        projectRepository.findAll().forEach(item->{
+        this.projectRepository.findAll().forEach(item->{
             project.add(item);
         });
 
@@ -33,15 +33,15 @@ public class ProjectService {
             existingProject.setWebsite(project.getWebsite());
             existingProject.setGithub(project.getGithub());
 
-            return projectRepository.save(existingProject);
+            return this.projectRepository.save(existingProject);
         }
 
         project.setCreatedOn(new Date());
 
-        return projectRepository.save(project);
+        return this.projectRepository.save(project);
     }
 
     public Project findByUid(String uid) {
-        return projectRepository.findByUid(uid);
+        return this.projectRepository.findByUid(uid);
     }
 }

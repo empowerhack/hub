@@ -17,7 +17,7 @@ public class MemberService {
 
     public List<Member> findAll() {
         List<Member> members = new ArrayList<>();
-        memberRepository.findAll().forEach(item->{
+        this.memberRepository.findAll().forEach(item->{
             // @ToDo: check against GitHub members
             members.add(item);
         });
@@ -36,15 +36,15 @@ public class MemberService {
             existingMember.setAvatarUrl(member.getAvatarUrl());
             existingMember.setUpdatedOn(new Date());
 
-            return memberRepository.save(existingMember);
+            return this.memberRepository.save(existingMember);
         }
 
         member.setCreatedOn(new Date());
 
-        return memberRepository.save(member);
+        return this.memberRepository.save(member);
     }
 
     public Member findByUsername(String username) {
-        return memberRepository.findByUsername(username);
+        return this.memberRepository.findByUsername(username);
     }
 }
