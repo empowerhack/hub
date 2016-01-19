@@ -36,8 +36,11 @@
                     <small class="text-help has-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Date/Time Error</small>
                 </div>
                 <div class="form-group" th:classappend="${#fields.hasErrors('duration')} ? has-danger">
-                    <label for="duration" class="form-control-label">Duration (minutes)</label>
-                    <input type="text" class="form-control" id="duration" th:field="*{duration}" />
+                    <label for="duration" class="form-control-label">Duration</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="duration" th:field="*{duration}" />
+                        <span class="input-group-addon">minutes</span>
+                    </div>
                     <small class="text-help has-danger" th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">Duration</small>
                 </div>
             </div>
