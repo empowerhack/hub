@@ -29,7 +29,7 @@ public class Calendar {
     private String description;
 
     @NotNull
-    @Size(min = 6, max = 255)
+    @Size(min = 3, max = 255)
     private String location;
 
     @NotNull
