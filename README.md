@@ -8,6 +8,8 @@ Please read [Contribution](CONTRIBUTING.md) documentation
 
 ### Development setup
 
+Using **[Spring boot](http://projects.spring.io/spring-boot/)** with **Maven**
+
 Requirements
 * Java v1.8+ JDK
 * Maven v3+
