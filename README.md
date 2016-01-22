@@ -2,6 +2,12 @@
 
 ## ToDo
 
+* growl notifications (future would have filters & able to watch/unwatch items)
+    - alert calendar updates (save)
+    - alert project events (save)
+
+---
+
 * Update profile
     * availability to be a slider?
 
@@ -15,34 +21,23 @@
 ---
 
 * CRUD project
-    * github repo url
-    * website url
+    * documents url - title, url (similar to member.socials)
     * simple search
+    * activity
     * members on the project (many-to-many)
     * calendar - read all relevant calendar items
-    * activity
-    * last updated
 
 ---
 
 * Calendar
-    * Entity
-        * project
-        * creator (member)
-        * date (date picker)
-        * time
-        * duration
-        * title
-        * description - details  / agenda etc
-        * location
-        * planned attendees (required/optional)
-        * who actually attended
-        * notes from meeting
-        * private / public?
+    * planned attendees (required/optional)
+    * who actually attended
+    * notes from meeting
+    * private / public?
     * List
-        * in date order from today
+        * Historic - in date order from today
+        * Future - in date order from today
         * required/optional attendees
-        * date / time / duration / title / description
 
 ---
 
@@ -55,7 +50,8 @@
 
 * Audit everything
     * all tables
-    * activity page
+    * activity page for member / project / calendar etc
+    * user activity
     * display for item
 
 ---
