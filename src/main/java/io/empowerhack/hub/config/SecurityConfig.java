@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login/github")//.failureUrl("/login?error")
+                .loginPage("/login/github").failureUrl("/login")
                 .permitAll()
                 .and().logout().logoutSuccessUrl("/").permitAll()
                 .and().addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
