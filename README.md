@@ -12,7 +12,7 @@ Using **[Spring boot](http://projects.spring.io/spring-boot/)** with **Maven**
 
 Requirements
 * [Java v1.8+](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-* Maven v3+
+* [Maven v3+](https://maven.apache.org/download.cgi)
 * Open the project in a maven supporting IDE (Intellij by Jetbrains highly recommended)
 
 more to follow
