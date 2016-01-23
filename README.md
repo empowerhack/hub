@@ -23,5 +23,6 @@ Standard **Spring boot** structure.
 
 * `pom.xml` project dependencies
 * `src/main/java` java source files
-* `src/main/resources` static files (html, css etc) and yaml configuration
+* `src/main/resources/static` static files (css, javascript etc)
+* `src/main/resources/templates` html files
 * `src/test` test files
