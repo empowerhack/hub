@@ -1,2 +1,14 @@
 server:
-  port: ${port:8081}
+  port: 8081
+
+---
+spring:
+    profiles: test
+server:
+  port: 0
+
+---
+spring:
+    profiles: production
+server:
+  port: ${port:80}
