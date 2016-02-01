@@ -11,4 +11,9 @@ public class DefaultController {
     public String overview() {
         return "layout";
     }
+
+    @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
+    public String home() {
+        return "redirect:/";
+    }
 }
