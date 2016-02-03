@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/empowerhack/hub.svg?branch=dev)](https://travis-ci.org/empowerhack/hub)
+
 # EmpowerHack Hub
 
 Family Members, Project list, Calendar etc...
