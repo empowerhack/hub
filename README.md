@@ -11,6 +11,7 @@ Please read [Contribution](CONTRIBUTING.md) documentation
 Using **[Spring boot](http://projects.spring.io/spring-boot/)** with **Maven**
 
 Requirements
+
 * [Java v1.8+](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven v3+](https://maven.apache.org/download.cgi)
 * Open the project in a maven supporting IDE (Intellij by Jetbrains highly recommended)
@@ -39,3 +40,4 @@ Standard **Spring boot** structure.
 
 
 * **NOTE:** The Prototype branch is meant as a proof of concept and  must not (ever!) be merged into mainstream 
+
