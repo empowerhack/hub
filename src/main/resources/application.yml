@@ -1,4 +1,4 @@
-version: --BUILD-VERSION--
+version: build-feature/6-travis-ci-2016-02-03-6
 server:
   port: 8081
 
