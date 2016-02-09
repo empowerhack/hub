@@ -1,4 +1,4 @@
-version: --BUILD-VERSION--
+version: build-feature/17-display-version-2016-02-09-9
 server:
   port: 8081
 
