@@ -32,14 +32,4 @@ Standard **Spring boot** structure.
 
 
 
-### Feature development
-
-* For each feature, we will iterate through the following tasks:
-`Prototype > Wireframes > Implement Wireframes > Design > Implement Design > Done`
-
-
-* Reviews will occur at each step of the process `(Task > Pull Request > Review > Commit)`
-
-
-* **NOTE:** The Prototype branch is meant as a proof of concept and  must not (ever!) be merged into mainstream 
 
