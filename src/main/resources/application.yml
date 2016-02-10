@@ -1,4 +1,4 @@
-version: --BUILD-VERSION--
+version: build-clawey-patch-3-2016-02-10-13
 server:
   port: 8081
 
