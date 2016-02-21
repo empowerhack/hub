@@ -9,11 +9,7 @@ public class DefaultController {
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String overview() {
-        return "layout";
-    }
 
-    @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
-    public String home() {
-        return "redirect:/";
+        return "default/overview";
     }
 }
