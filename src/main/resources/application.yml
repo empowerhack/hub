@@ -1,6 +1,27 @@
 version: --BUILD-VERSION--
 server:
   port: 8081
+security:
+#  sessions: ALWAYS
+  oauth2:
+    client:
+      clientId: ${clientId:clientId}
+      clientSecret: ${clientSecret:clientSecret}
+      accessTokenUri: https://graph.facebook.com/oauth/access_token
+      userAuthorizationUri: https://www.facebook.com/dialog/oauth
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+#      scope: email,user_about_me
+    resource:
+      userInfoUri: https://graph.facebook.com/me
+spring:
+  resources:
+    chain:
+      enabled: true
+logging:
+  level:
+    org.springframework.security: DEBUG
 
 ---
 spring:
