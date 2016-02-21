@@ -113,6 +113,11 @@
 			<version>1.4.01</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>0.7</version>
+		</dependency>
 	</dependencies>
 	
 	<build>

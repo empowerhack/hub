@@ -33,6 +33,8 @@ public abstract class HubApplicationTests {
     @Autowired
     protected WebDriver driver;
 
+    protected Faker faker = new Faker();
+
     protected String withBaseUrl(String path) {
         return getBaseUrl() + path;
     }
