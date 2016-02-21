@@ -1,4 +1,4 @@
-version: --BUILD-VERSION--
+version: build-feature/18/facebook-login-2016-02-21-20
 server:
   port: 8081
 security:
