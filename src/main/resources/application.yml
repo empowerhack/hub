@@ -1,4 +1,4 @@
-version: --BUILD-VERSION--
+version: build-feature/25/deployment-2016-02-21-33
 server:
   port: 8081
 security:
