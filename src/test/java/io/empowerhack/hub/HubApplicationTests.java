@@ -1,9 +1,12 @@
 package io.empowerhack.hub;
 
+import com.github.javafaker.Faker;
+import io.empowerhack.hub.domain.User;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationContextLoader;
@@ -27,9 +30,16 @@ public abstract class HubApplicationTests {
         return "http://localhost:" + port;
     }
 
-    public WebDriver driver = new FirefoxDriver();
+    @Autowired
+    protected WebDriver driver;
+
+    protected Faker faker = new Faker();
 
     protected String withBaseUrl(String path) {
         return getBaseUrl() + path;
+    }
+
+    protected User getUser() {
+        return new User("TestUser");
     }
 }
