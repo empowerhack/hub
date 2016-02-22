@@ -1,10 +1,5 @@
 [![Build Status](https://travis-ci.org/empowerhack/hub.svg?branch=dev)](https://travis-ci.org/empowerhack/hub)
 
-| Environment | Url | Comments |
-| ----------- | --- | -------- |
-| Production  | hub.empowerhack.io | Data is kept |
-| Development | dev.hub.empowerhack.io | Data is NOT kept between deployments |
-
 # EmpowerHack Hub
 
 Family Members, Project list, Calendar etc...
