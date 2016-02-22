@@ -5,8 +5,8 @@ security:
 #  sessions: ALWAYS
   oauth2:
     client:
-      clientId: ${clientId:clientId}
-      clientSecret: ${clientSecret:clientSecret}
+      clientId: xxx
+      clientSecret: xxx
       accessTokenUri: https://graph.facebook.com/oauth/access_token
       userAuthorizationUri: https://www.facebook.com/dialog/oauth
       tokenName: oauth_token
