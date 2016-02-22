@@ -1,4 +1,4 @@
-version: --BUILD-VERSION--
+version: build-revert-29-feature/25/deployment-2016-02-22-42
 server:
   port: 8081
 security:
