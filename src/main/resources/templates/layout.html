@@ -38,22 +38,38 @@
             <li class="nav-item">
                 <a class="nav-link" th:action="@{/}" href="/">Home</a>
             </li>
+            <li class="nav-item" th:if="${currentUser.uid}">
+                <form method="post" th:action="@{/logout}">
+                    <input type="submit" id="logout" class="btn btn-primary" value="Logout" />
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                </form>
+            </li>
+            <li class="nav-item" th:unless="${currentUser.uid}">
+                <a class="nav-link" id="login" th:action="@{/login}" href="/login">Welcome Guest, please Login</a>
+            </li>
         </ul>
     </div>
 </nav> <!-- /navbar -->
 
-
-<div class="alert alert-warning" role="alert">
-    <strong th:text="${version}">version</strong> Beta
+<div id="alert-info" class="alert alert-info" role="alert" th:if="${info != null}">
+    <strong>Important!</strong> <span>You must fill out your <a th:href="@{/profile}">Profile first</a></span>
 </div>
 
-<div class="alert alert-danger" role="alert" th:if="${error != null}">
+<div id="alert-error" class="alert alert-danger" role="alert" th:if="${error != null}">
     <strong>Error!</strong> <span th:text="${error}"></span>
+</div>
+
+<div id="alert-successful" class="alert alert-success" role="alert" th:if="${success != null}">
+    <strong>Success!</strong> <span th:text="${success}"></span>
 </div>
 
 <div layout:fragment="content">
     Homepage
 </div>
+
+<nav class="navbar navbar-fixed-bottom navbar-light bg-faded alert-warning" role="alert">
+    <strong th:text="${version}">version</strong> Beta
+</nav>
 
 </body>
 </html>
