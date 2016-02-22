@@ -39,6 +39,12 @@
                 <a class="nav-link" th:action="@{/}" href="/">Home</a>
             </li>
             <li class="nav-item" th:if="${currentUser.uid}">
+                <a class="nav-link" id="username" th:action="@{/profile}" href="/profile">
+                    <i class="fa fa-user"></i>
+                    <span th:text="${currentUser.name}">Profile</span>
+                </a>
+            </li>
+            <li class="nav-item" th:if="${currentUser.uid}">
                 <form method="post" th:action="@{/logout}">
                     <input type="submit" id="logout" class="btn btn-primary" value="Logout" />
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
