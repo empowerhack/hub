@@ -1,4 +1,4 @@
-version: --BUILD-VERSION--
+version: build-feature/11/update-profile-2016-02-22-36
 server:
   port: 8081
 security:
