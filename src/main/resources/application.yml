@@ -1,4 +1,4 @@
-version: --BUILD-VERSION--
+version: build-feature/classes-made-final-2016-02-23-50
 server:
   port: 8081
 security:
