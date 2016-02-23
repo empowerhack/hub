@@ -8,7 +8,7 @@ import org.springframework.security.authentication.event.InteractiveAuthenticati
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthenticationListener implements ApplicationListener<InteractiveAuthenticationSuccessEvent> {
+public final class AuthenticationListener implements ApplicationListener<InteractiveAuthenticationSuccessEvent> {
 
     @Autowired
     private UserService userService;
