@@ -13,10 +13,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-public class AccountController {
+public final class AccountController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping(value = {"/profile"}, method = RequestMethod.GET)
     public String profile(Model model) {
@@ -35,14 +35,14 @@ public class AccountController {
             Model model
     ) {
 
-        this.userService.findByCurrentUser();
+        userService.findByCurrentUser();
         if (bindingResult.hasErrors()) {
             model.addAttribute("error", "An error occurred please try again");
 
             return "account/profile";
         }
 
-        this.userService.saveByCurrentUser(user);
+        userService.saveByCurrentUser(user);
         redirectAttributes.addFlashAttribute("success", "Successfully saved");
 
         return "redirect:/profile";
