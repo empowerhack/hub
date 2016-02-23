@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class DefaultController {
+public final class DefaultController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String overview(Model model) {
