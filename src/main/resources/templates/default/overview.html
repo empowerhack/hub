@@ -15,8 +15,8 @@
         <div class="card" th:each="user : ${users}">
             <div class="card-header">
                 <span class="pull-right visibility">
-                    <i class="fa fa-lock" th:if="${user.private}"></i>
-                    <i class="fa fa-unlock" th:unless="${user.private}"></i>
+                    <i class="fa fa-lock user-private" th:if="${user.private}"></i>
+                    <i class="fa fa-unlock user-public" th:unless="${user.private}"></i>
                 </span>
                 <i class="fa fa-user fa-1x"></i>
                 <span th:text="${user.name}">Name</span>

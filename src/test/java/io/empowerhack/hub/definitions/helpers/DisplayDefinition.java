@@ -10,11 +10,11 @@ import java.util.List;
 
 public class DisplayDefinition extends HubApplicationTests {
 
-    @Then("^I see (\\\\d+) elements of (.*)$")
+    @Then("^I see (\\d+) elements of (\\S+)$")
     public void I_see_elements_of(Integer size, String element) {
         List<WebElement> elements = driver.findElements(By.className(element));
 
-        Assert.assertEquals(elements.size(), size.intValue());
+        Assert.assertEquals(size.intValue(), elements.size());
     }
 
     @Then("^I see element (.*)$")
@@ -22,6 +22,20 @@ public class DisplayDefinition extends HubApplicationTests {
         Boolean isDisplayed = driver.findElement(By.id(element)).isDisplayed();
 
         Assert.assertEquals(true, isDisplayed);
+    }
+
+    @Then("^I see elements (.*)$")
+    public void I_see_elements(String element) {
+        List<WebElement> elements = driver.findElements(By.className(element));
+
+        Assert.assertEquals(true, elements.size() > 0);
+    }
+
+    @Then("^I can not see elements (.*)$")
+    public void I_can_not_see_elements(String element) {
+        List<WebElement> elements = driver.findElements(By.className(element));
+
+        Assert.assertEquals(true, elements.size() == 0);
     }
 
     @Then("^I can not see element (.*)$")

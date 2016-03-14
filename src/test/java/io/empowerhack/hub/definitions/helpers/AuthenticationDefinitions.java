@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AuthenticationDefinitions extends HubApplicationTests {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Given("^I am logged in$")
     public void I_am_logged_in() {
