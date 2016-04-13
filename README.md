@@ -48,3 +48,4 @@ Standard **Spring boot** structure.
 
 * **NOTE:** The Prototype branch is meant as a proof of concept and  must not (ever!) be merged into mainstream 
 
+![empowerhack-hub](https://cloud.githubusercontent.com/assets/624760/14483645/178fe2ba-0141-11e6-87e3-850e6d841679.gif)
