@@ -14,38 +14,30 @@
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
     <!--
-        Added the entity Skill.
+        Added the entity EntityAuditEvent.
     -->
-    <changeSet id="20160414142426" author="jhipster">
-        <createTable tableName="skill">
+    <changeSet id="20160414145539" author="jhipster">
+        <createTable tableName="jhi_entity_audit_event">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(24)">
+            <column name="entity_id" type="bigint">
                 <constraints nullable="false" />
             </column>
-            
-            <column name="level" type="integer">
+            <column name="entity_type" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            
-            <column name="user_id" type="bigint"/>
-            <column name="created_by" type="varchar(50)">
-                <constraints nullable="false"/>
+            <column name="action" type="varchar(20)">
+                <constraints nullable="false" />
             </column>
-            <column name="created_date" type="timestamp" defaultValueDate="${now}">
-                <constraints nullable="false"/>
+            <column name="entity_value" type="clob"/>
+            <column name="commit_version" type="integer"/>
+            <column name="modified_by" type="varchar(100)"/>
+            <column name="modified_date" type="timestamp">
+                <constraints nullable="false" />
             </column>
-            <column name="last_modified_by" type="varchar(50)"/>
-            <column name="last_modified_date" type="timestamp"/>
-            <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
-        <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="skill"
-                                 constraintName="fk_skill_user_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
-
+        <dropDefaultValue tableName="jhi_entity_audit_event" columnName="modified_date" columnDataType="datetime"/>
+        <!-- TODO add an archival job for the table -->
     </changeSet>
 </databaseChangeLog>
