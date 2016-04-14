@@ -31,10 +31,10 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class SkillResource {
 
     private final Logger log = LoggerFactory.getLogger(SkillResource.class);
-        
+
     @Inject
     private SkillService skillService;
-    
+
     /**
      * POST  /skills : Create a new skill.
      *
@@ -92,7 +92,7 @@ public class SkillResource {
     @Timed
     public List<Skill> getAllSkills() {
         log.debug("REST request to get all Skills");
-        return skillService.findAll();
+        return skillService.findByUserIsCurrentUser();
     }
 
     /**

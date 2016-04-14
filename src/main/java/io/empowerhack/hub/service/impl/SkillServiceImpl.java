@@ -24,16 +24,16 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class SkillServiceImpl implements SkillService{
 
     private final Logger log = LoggerFactory.getLogger(SkillServiceImpl.class);
-    
+
     @Inject
     private SkillRepository skillRepository;
-    
+
     @Inject
     private SkillSearchRepository skillSearchRepository;
-    
+
     /**
      * Save a skill.
-     * 
+     *
      * @param skill the entity to save
      * @return the persisted entity
      */
@@ -46,10 +46,10 @@ public class SkillServiceImpl implements SkillService{
 
     /**
      *  Get all the skills.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<Skill> findAll() {
         log.debug("Request to get all Skills");
         List<Skill> result = skillRepository.findAll();
@@ -62,7 +62,7 @@ public class SkillServiceImpl implements SkillService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Skill findOne(Long id) {
         log.debug("Request to get Skill : {}", id);
         Skill skill = skillRepository.findOne(id);
@@ -71,7 +71,7 @@ public class SkillServiceImpl implements SkillService{
 
     /**
      *  Delete the  skill by id.
-     *  
+     *
      *  @param id the id of the entity
      */
     public void delete(Long id) {
@@ -92,5 +92,17 @@ public class SkillServiceImpl implements SkillService{
         return StreamSupport
             .stream(skillSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
+    }
+
+    /**
+     *  Get all the skills.
+     *
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<Skill> findByUserIsCurrentUser() {
+        log.debug("Request to get all Skills");
+        List<Skill> result = skillRepository.findByUserIsCurrentUser();
+        return result;
     }
 }
