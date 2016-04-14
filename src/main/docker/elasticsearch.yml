@@ -1,0 +1,10 @@
+version: '2'
+services:
+    hub-elasticsearch:
+        container_name: hub-elasticsearch
+        image: elasticsearch:1.7.5
+        # volumes:
+        #     - ~/volumes/jhipster/hub/elasticsearch/:/usr/share/elasticsearch/data/
+        ports:
+            - 9200:9200
+            - 9300:9300

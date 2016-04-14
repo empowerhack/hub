@@ -1,75 +1,78 @@
-# EmpowerHack Hub
+# hub
 
-## ToDo
+This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
 
-* growl notifications (future would have filters & able to watch/unwatch items)
-    - alert calendar updates (save)
-    - alert project events (save)
+## Development
 
----
+Before you can build this project, you must install and configure the following dependencies on your machine:
 
-* Update profile
-    * availability to be a slider?
+1. [Node.js][]: We use Node to run a development web server and build the project.
+   Depending on your system, you can install Node either from source or as a pre-packaged bundle.
 
-* Members list
-    * list results
-    * From DB - Everyone who has logged in
-    * Core member badge - Members list from GitHub (in-memory cache on timer)
-    * private / public - logged in / guest
-    * simple search
+After installing Node, you should be able to run the following command to install development tools (like
+[Bower][] and [BrowserSync][]). You will only need to run this command when dependencies change in package.json.
 
----
+    npm install
 
-* CRUD project
-    * documents url - title, url (similar to member.socials)
-    * simple search
-    * activity
-    * members on the project (many-to-many)
-    * calendar - read all relevant calendar items
+We use [Gulp][] as our build system. Install the Gulp command-line tool globally with:
 
----
+    npm install -g gulp
 
-* Calendar
-    * planned attendees (required/optional)
-    * who actually attended
-    * notes from meeting
-    * private / public?
-    * List
-        * Historic - in date order from today
-        * Future - in date order from today
-        * required/optional attendees
+Run the following commands in two separate terminals to create a blissful development experience where your browser
+auto-refreshes when files change on your hard drive.
 
----
+    ./mvnw
+    gulp
 
-* Member improvements
-    * Visibility section: public / private (if member of organisation, change this too on GitHub)
-    * Get user's GitHub profile - avatar url and save (have force update button)
-* deploy - DB separate vm?
+Bower is used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
+specifying a newer version in `bower.json`. You can also run `bower update` and `bower install` to manage dependencies.
+Add the `-h` flag on any command to see how you can use it. For example, `bower update -h`.
 
----
 
-* Audit everything
-    * all tables
-    * activity page for member / project / calendar etc
-    * user activity
-    * display for item
+## Building for production
 
----
+To optimize the hub client for production, run:
 
-* Notifications (tab section under accounts)
-    * Websockets & Growl
-        * eg. new user / updated user / new project / updated project / new calendar / updated calender
-    * Email? (disable for now)
-    * User configure preferences - new user, updated user, etc...
+    ./mvnw -Pprod clean package
 
----
+This will concatenate and minify CSS and JavaScript files. It will also modify `index.html` so it references
+these new files.
 
-* Member list
-    * facets - save / sync to ES
-    * search with facets
+To ensure everything worked, run:
 
----
+    java -jar target/*.war --spring.profiles.active=prod
 
-* Project list
-    * facets - save / sync to ES
-    * search with facets
+Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
+
+## Testing
+
+Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in `src/test/javascript/` and can be run with:
+
+    gulp test
+
+
+
+## Continuous Integration
+
+To setup this project in Jenkins, use the following configuration:
+
+* Project name: `hub`
+* Source Code Management
+    * Git Repository: `git@github.com:xxxx/hub.git`
+    * Branches to build: `*/master`
+    * Additional Behaviours: `Wipe out repository & force clone`
+* Build Triggers
+    * Poll SCM / Schedule: `H/5 * * * *`
+* Build
+    * Invoke Maven / Tasks: `-Pprod clean package`
+* Post-build Actions
+    * Publish JUnit test result report / Test Report XMLs: `build/test-results/*.xml`
+
+[JHipster]: https://jhipster.github.io/
+[Node.js]: https://nodejs.org/
+[Bower]: http://bower.io/
+[Gulp]: http://gulpjs.com/
+[BrowserSync]: http://www.browsersync.io/
+[Karma]: http://karma-runner.github.io/
+[Jasmine]: http://jasmine.github.io/2.0/introduction.html
+[Protractor]: https://angular.github.io/protractor/

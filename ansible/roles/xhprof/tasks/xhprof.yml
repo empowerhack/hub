@@ -1,6 +1,0 @@
-- name: install xhprof-beta
-  shell: pecl install xhprof-beta
-
-- name: enabling xhprof-beta
-  lineinfile: dest=/etc/php5/apache2/php.ini
-              line='extension=xhprof.so'

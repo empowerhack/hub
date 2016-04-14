@@ -1,6 +1,0 @@
-- name: Install ruby development headers
-  sudo: yes
-  gem:
-    name: jekyll
-    state: latest
-    user_install: no
