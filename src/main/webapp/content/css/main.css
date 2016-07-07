@@ -284,7 +284,6 @@ entity tables helpers
     position: relative; }
     .prj-row .prj-tags span:before {
       content: "";
-      float: left;
       position: absolute;
       top: 0;
       left: -12px;
@@ -298,7 +297,6 @@ entity tables helpers
       position: absolute;
       top: 10px;
       left: 0;
-      float: left;
       width: 4px;
       height: 4px;
       -moz-border-radius: 2px;
