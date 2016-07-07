@@ -35,21 +35,19 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
                     <th jh-sort-by="name"><span translate="hubApp.project.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="description"><span translate="hubApp.project.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="status"><span translate="hubApp.project.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="pathToImage"><span translate="hubApp.project.pathToImage">Path To Image</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="project in vm.projects track by project.id">
-                    <td><a ui-sref="project-detail({id:project.id})">{{project.id}}</a></td>
+                    <td><img src="{{project.pathToImage}}"></td>
                     <td>{{project.name}}</td>
                     <td>{{project.description}}</td>
                     <td>{{project.status}}</td>
-                    <td>{{project.pathToImage}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

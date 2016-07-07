@@ -288,6 +288,12 @@ entity tables helpers
     tbody > tr > td {
         /* Align text in td verifically (top aligned by Bootstrap) */
         vertical-align: middle;
+        img {
+            max-height: 100px;
+            max-width: 100px;
+            height: auto;
+            width: auto;
+        }
     }
     thead > tr > th > {
         .glyphicon-sort, .glyphicon-sort-by-attributes, .glyphicon-sort-by-attributes-alt {
