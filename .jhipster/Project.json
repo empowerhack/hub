@@ -34,6 +34,10 @@
         {
             "fieldName": "status",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "pathToImage",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20160707124842",

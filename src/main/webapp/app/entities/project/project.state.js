@@ -94,6 +94,7 @@
                                 name: null,
                                 description: null,
                                 status: null,
+                                pathToImage: null,
                                 id: null
                             };
                         }

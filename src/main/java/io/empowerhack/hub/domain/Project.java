@@ -37,6 +37,9 @@ public class Project implements Serializable {
     @Column(name = "status")
     private String status;
 
+    @Column(name = "path_to_image")
+    private String pathToImage;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "project_partners",
@@ -83,6 +86,14 @@ public class Project implements Serializable {
         this.status = status;
     }
 
+    public String getPathToImage() {
+        return pathToImage;
+    }
+
+    public void setPathToImage(String pathToImage) {
+        this.pathToImage = pathToImage;
+    }
+
     public Set<Partner> getPartners() {
         return partners;
     }
@@ -126,6 +137,7 @@ public class Project implements Serializable {
             ", name='" + name + "'" +
             ", description='" + description + "'" +
             ", status='" + status + "'" +
+            ", pathToImage='" + pathToImage + "'" +
             '}';
     }
 }

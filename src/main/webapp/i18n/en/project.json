@@ -19,6 +19,7 @@
             "name": "Name",
             "description": "Description",
             "status": "Status",
+            "pathToImage": "Path To Image",
             "partners": "Partners",
             "tags": "Tags"
         }
