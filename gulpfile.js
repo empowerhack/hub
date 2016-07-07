@@ -2,6 +2,8 @@
 'use strict';
 
 var gulp = require('gulp'),
+    expect = require('gulp-expect-file'),
+    sass = require('gulp-sass'),
     rev = require('gulp-rev'),
     templateCache = require('gulp-angular-templatecache'),
     htmlmin = require('gulp-htmlmin'),
@@ -45,16 +47,6 @@ gulp.task('copy', function () {
         .pipe(plumber({errorHandler: handleErrors}))
         .pipe(changed(config.dist + 'i18n/'))
         .pipe(gulp.dest(config.dist + 'i18n/')),
-        gulp.src(config.bower + 'bootstrap/fonts/*.*')
-        .pipe(plumber({errorHandler: handleErrors}))
-        .pipe(changed(config.dist + 'content/fonts/'))
-        .pipe(rev())
-        .pipe(gulp.dest(config.dist + 'content/fonts/'))
-        .pipe(rev.manifest(config.revManifest, {
-            base: config.dist,
-            merge: true
-        }))
-        .pipe(gulp.dest(config.dist)),
         gulp.src(config.app + 'content/**/*.{woff,woff2,svg,ttf,eot,otf}')
         .pipe(plumber({errorHandler: handleErrors}))
         .pipe(changed(config.dist + 'content/fonts/'))
@@ -88,6 +80,21 @@ gulp.task('images', function () {
         .pipe(browserSync.reload({stream: true}));
 });
 
+gulp.task('sass', function () {
+    return es.merge(
+        gulp.src(config.sassSrc)
+        .pipe(plumber({errorHandler: handleErrors}))
+        .pipe(expect(config.sassSrc))
+        .pipe(changed(config.cssDir, {extension: '.css'}))
+        .pipe(sass({includePaths:config.bower}).on('error', sass.logError))
+        .pipe(gulp.dest(config.cssDir)),
+        gulp.src(config.bower + '**/fonts/**/*.{woff,woff2,svg,ttf,eot,otf}')
+        .pipe(plumber({errorHandler: handleErrors}))
+        .pipe(changed(config.app + 'content/fonts'))
+        .pipe(flatten())
+        .pipe(gulp.dest(config.app + 'content/fonts'))
+    );
+});
 
 gulp.task('languages', function () {
     var locales = yorc.languages.map(function (locale) {
@@ -99,7 +106,7 @@ gulp.task('languages', function () {
         .pipe(gulp.dest(config.app + 'i18n/'));
 });
 
-gulp.task('styles', [], function () {
+gulp.task('styles', ['sass'], function () {
     return gulp.src(config.app + 'content/css')
         .pipe(browserSync.reload({stream: true}));
 });
@@ -124,7 +131,13 @@ gulp.task('inject:vendor', function () {
         }))
         .pipe(gulp.dest(config.app));
 
-    return stream;
+    return es.merge(stream, gulp.src(config.sassVendor)
+        .pipe(plumber({errorHandler: handleErrors}))
+        .pipe(inject(gulp.src(bowerFiles({filter:['**/*.{scss,sass}']}), {read: false}), {
+            name: 'bower',
+            relative: true
+        }))
+        .pipe(gulp.dest(config.scss)));
 });
 
 gulp.task('inject:test', function () {
@@ -245,14 +258,14 @@ gulp.task('itest', ['protractor']);
 gulp.task('watch', function () {
     gulp.watch('bower.json', ['install']);
     gulp.watch(['gulpfile.js', 'pom.xml'], ['ngconstant:dev']);
-    gulp.watch(config.app + 'content/css/**/*.css', ['styles']);
+    gulp.watch(config.sassSrc, ['styles']);
     gulp.watch(config.app + 'content/images/**', ['images']);
     gulp.watch(config.app + 'app/**/*.js', ['inject:app']);
     gulp.watch([config.app + '*.html', config.app + 'app/**', config.app + 'i18n/**']).on('change', browserSync.reload);
 });
 
 gulp.task('install', function () {
-    runSequence(['inject:dep', 'ngconstant:dev'], 'languages', 'inject:app', 'inject:troubleshoot');
+    runSequence(['inject:dep', 'ngconstant:dev'], 'sass', 'languages', 'inject:app', 'inject:troubleshoot');
 });
 
 gulp.task('serve', function () {
