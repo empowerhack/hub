@@ -44,7 +44,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="project in vm.projects track by project.id">
-                    <td><img src="{{project.pathToImage}}"></td>
+                    <td><img ng-src="{{project.pathToImage}}"></td>
                     <td>{{project.name}}</td>
                     <td>{{project.description}}</td>
                     <td>{{project.status}}</td>
