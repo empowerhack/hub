@@ -21,7 +21,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20160707123458",
+    "changelogDate": "20160707124842",
     "dto": "no",
     "service": "serviceImpl",
     "entityTableName": "project",
