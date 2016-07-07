@@ -5,15 +5,16 @@
         .module('hubApp')
         .controller('ProjectDialogController', ProjectDialogController);
 
-    ProjectDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Project', 'Partner'];
+    ProjectDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Project', 'Partner', 'Tag'];
 
-    function ProjectDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Project, Partner) {
+    function ProjectDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Project, Partner, Tag) {
         var vm = this;
 
         vm.project = entity;
         vm.clear = clear;
         vm.save = save;
         vm.partners = Partner.query();
+        vm.tags = Tag.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

@@ -2,37 +2,35 @@
 
 describe('Controller Tests', function() {
 
-    describe('Project Management Detail Controller', function() {
+    describe('Tag Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockProject, MockPartner, MockTag;
+        var MockEntity, MockTag, MockProject;
         var createController;
 
         beforeEach(inject(function($injector) {
             $rootScope = $injector.get('$rootScope');
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
-            MockProject = jasmine.createSpy('MockProject');
-            MockPartner = jasmine.createSpy('MockPartner');
             MockTag = jasmine.createSpy('MockTag');
+            MockProject = jasmine.createSpy('MockProject');
             
 
             var locals = {
                 '$scope': $scope,
                 '$rootScope': $rootScope,
                 'entity': MockEntity ,
-                'Project': MockProject,
-                'Partner': MockPartner,
-                'Tag': MockTag
+                'Tag': MockTag,
+                'Project': MockProject
             };
             createController = function() {
-                $injector.get('$controller')("ProjectDetailController", locals);
+                $injector.get('$controller')("TagDetailController", locals);
             };
         }));
 
 
         describe('Root Scope Listening', function() {
             it('Unregisters root scope listener upon scope destruction', function() {
-                var eventType = 'hubApp:projectUpdate';
+                var eventType = 'hubApp:tagUpdate';
 
                 createController();
                 expect($rootScope.$$listenerCount[eventType]).toEqual(1);

@@ -19,7 +19,8 @@
             "name": "Name",
             "description": "Description",
             "status": "Status",
-            "partners": "Partners"
+            "partners": "Partners",
+            "tags": "Tags"
         }
     }
 }

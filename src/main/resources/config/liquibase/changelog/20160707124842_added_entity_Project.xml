@@ -47,5 +47,16 @@
 
         <addPrimaryKey columnNames="projects_id, partners_id" tableName="project_partners"/>
         
+        <createTable tableName="project_tags">
+            <column name="tags_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="projects_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="projects_id, tags_id" tableName="project_tags"/>
+        
     </changeSet>
 </databaseChangeLog>

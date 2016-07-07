@@ -50,6 +50,10 @@
             <label translate="hubApp.project.partners" for="field_partners">Partners</label>
             <select class="form-control" id="field_partners" multiple name="partners" ng-model="vm.project.partners" ng-options="partner as partner.name for partner in vm.partners track by partner.id"></select>
         </div>
+        <div class="form-group">
+            <label translate="hubApp.project.tags" for="field_tags">Tags</label>
+            <select class="form-control" id="field_tags" multiple name="tags" ng-model="vm.project.tags" ng-options="tag as tag.name for tag in vm.tags track by tag.id"></select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

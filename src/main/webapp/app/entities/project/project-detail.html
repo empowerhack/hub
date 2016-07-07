@@ -22,6 +22,12 @@
                 <a ui-sref="partner-detail({id: {{partners.id}}})">{{partners.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
+        <dt><span translate="hubApp.project.tags">Tags</span></dt>
+        <dd>
+            <span ng-repeat="tags in vm.project.tags">
+                <a ui-sref="tag-detail({id: {{tags.id}}})">{{tags.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
 
     <button type="submit"

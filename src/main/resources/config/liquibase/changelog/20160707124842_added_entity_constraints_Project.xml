@@ -19,5 +19,16 @@
                                  referencedColumnNames="id"
                                  referencedTableName="partner"/>
         
+        <addForeignKeyConstraint baseColumnNames="projects_id"
+                                 baseTableName="project_tags"
+                                 constraintName="fk_project_tags_tag_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"/>
+        <addForeignKeyConstraint baseColumnNames="tags_id"
+                                 baseTableName="project_tags"
+                                 constraintName="fk_project_tags_project_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tag"/>
+        
     </changeSet>
 </databaseChangeLog>
