@@ -1,50 +1,87 @@
-[![Build Status](https://travis-ci.org/empowerhack/hub.svg?branch=dev)](https://travis-ci.org/empowerhack/hub)
+# hub
 
-| Environment | Url | Comments |
-| ----------- | --- | -------- |
-| Production  | hub.empowerhack.io | Data is kept |
-| Development | dev.hub.empowerhack.io | Data is NOT kept between deployments |
+This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
 
-# EmpowerHack Hub
+## Development
 
-Family Members, Project list, Calendar etc...
+Before you can build this project, you must install and configure the following dependencies on your machine:
 
-Please read [Contribution](CONTRIBUTING.md) documentation
+1. [Node.js][]: We use Node to run a development web server and build the project.
+   Depending on your system, you can install Node either from source or as a pre-packaged bundle.
 
----
+After installing Node, you should be able to run the following command to install development tools (like
+[Bower][] and [BrowserSync][]). You will only need to run this command when dependencies change in package.json.
 
-### Development setup
+    npm install
 
-Using **[Spring boot](http://projects.spring.io/spring-boot/)** with **Maven**
+We use [Gulp][] as our build system. Install the Gulp command-line tool globally with:
 
-Requirements
+    npm install -g gulp
 
-* [Java v1.8+](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-* [Maven v3+](https://maven.apache.org/download.cgi)
-* Open the project in a maven supporting IDE (Intellij by Jetbrains highly recommended)
+Run the following commands in two separate terminals to create a blissful development experience where your browser
+auto-refreshes when files change on your hard drive.
 
-more to follow
+    ./mvnw
+    gulp
 
-### Project structure
-
-Standard **Spring boot** structure.
-
-* `pom.xml` project dependencies
-* `src/main/java` java source files
-* `src/main/resources/static` static files (css, javascript etc)
-* `src/main/resources/templates` html files
-* `src/test` test files
+Bower is used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
+specifying a newer version in `bower.json`. You can also run `bower update` and `bower install` to manage dependencies.
+Add the `-h` flag on any command to see how you can use it. For example, `bower update -h`.
 
 
+## Building for production
 
-### Feature development
+To optimize the hub client for production, run:
 
-* For each feature, we will iterate through the following tasks:
-`Prototype > Wireframes > Implement Wireframes > Design > Implement Design > Done`
+    ./mvnw -Pprod clean package
 
+This will concatenate and minify CSS and JavaScript files. It will also modify `index.html` so it references
+these new files.
 
-* Reviews will occur at each step of the process `(Task > Pull Request > Review > Commit)`
+To ensure everything worked, run:
 
+    java -jar target/*.war --spring.profiles.active=prod
 
-* **NOTE:** The Prototype branch is meant as a proof of concept and  must not (ever!) be merged into mainstream 
+Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
+## Testing
+
+Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in `src/test/javascript/` and can be run with:
+
+    gulp test
+
+UI end-to-end tests are powered by [Protractor][], which is built on top of WebDriverJS. They're located in `src/test/javascript/e2e`
+and can be run by starting Spring Boot in one terminal (`./mvnw spring-boot:run`) and running the tests (`gulp itest`) in a second one.
+
+## Continuous Integration
+
+To setup this project in Jenkins, use the following configuration:
+
+* Project name: `hub`
+* Source Code Management
+    * Git Repository: `git@github.com:xxxx/hub.git`
+    * Branches to build: `*/master`
+    * Additional Behaviours: `Wipe out repository & force clone`
+* Build Triggers
+    * Poll SCM / Schedule: `H/5 * * * *`
+* Build
+    * Invoke Maven / Tasks: `-Pprod clean package`
+    * Execute Shell / Command:
+        ````
+        ./mvnw spring-boot:run &
+        bootPid=$!
+        sleep 30s
+        gulp itest
+        kill $bootPid
+        ````
+* Post-build Actions
+    * Publish JUnit test result report / Test Report XMLs: `build/test-results/*.xml,build/reports/e2e/*.xml`
+
+[JHipster]: https://jhipster.github.io/
+[Node.js]: https://nodejs.org/
+[Bower]: http://bower.io/
+[Gulp]: http://gulpjs.com/
+[BrowserSync]: http://www.browsersync.io/
+[Karma]: http://karma-runner.github.io/
+[Jasmine]: http://jasmine.github.io/2.0/introduction.html
+[Protractor]: https://angular.github.io/protractor/

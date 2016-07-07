@@ -1,29 +1,12 @@
-language: java
-jdk:
-  - oraclejdk8
+language: node_js
+node_js:
+  - "4.4.3"
 sudo: false
-install: true
-
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
-
-script: mvn test
-
-after_success:
-  - git config --global user.email "builds@travis-ci.com"
-  - git config --global user.name "Travis CI"
-  - export GIT_TAG=build-$TRAVIS_BRANCH-$(date -u "+%Y-%m-%d")-$TRAVIS_BUILD_NUMBER
-  - sed -i -e "s?--BUILD-VERSION--?$GIT_TAG?g" src/main/resources/application.yml
-  - git commit -m "Set build VERSION number as $GIT_TAG" src/main/resources/application.yml
-  - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
-  - git push https://$GITHUBKEY@github.com/empowerhack/hub $GIT_TAG > /dev/null 2>&1
-
-branches:
-  except:
-    - "/^build-[0-9a-z\\-]*/"
-
-env:
-  global:
-    - secure: "OTCm23S0GCsu85+xXE9RfNSp6xRRT5paYaVg7cTi4p3YiEM7LxvTGqOoQnGU24ocARYbpWcvNXJDJufEeNekKJMawyqylzZOdMoxhcMsoLhvpmwJvZoSHM8j8l2nFRsBVRWyMD66jPeoxNTMYMHA66P7ipwrUa+ZKE7hc8j5l93DDbCIN2zKoVvuhx1CfBwKBIKNkr927rtT/V223mn24VqZ/hp+izHYSTwPFCBiYyyTXlElZjrOqUVlcvGfl88mKuMqJYefDHxkCKbtbE5ddCJoHhADkS2PLhYv4ZmY6TxRyNg2C8g/Y1zPK3k2LDxEncVmb2Zq8C6+GfjIbkZbMu5q3SAj/fMK9Q2uqyWX+t/wvnqY+kI/wpaB/KqixKVsaHkRld+0qkaCFAgMLefeNhLDcaU1DLtIIiVj1Y5pSGsnnpjBvS6ZmsMRc46U4JjRq18nbfvViKt9A+zWhu/ino6FbZTjfZRYRfR3vz1WAIAE2zPAIIyknrIvqI9aZ5EQ1YnEqqrikOqpdAf+wCvGXdD8gjJUqUpnaph61c0nYG9ORcjTOOJRky5cTE9IdaxfSN7L4kIsMuNfkOD6vC9OllD3V7DlwyJR6CM7oD2D3qLw6MLMdISbrBRz/9aivhYilUXw8KNRKLniz4xZ24sMhIliQHI6hVZC947oSqgq7uo="
+before_install: npm install -g gulp
+install: npm install
+before_script: gulp build
+notifications:
+  webhooks:
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: false     # default: false

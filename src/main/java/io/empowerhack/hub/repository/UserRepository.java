@@ -1,19 +1,31 @@
 package io.empowerhack.hub.repository;
 
 import io.empowerhack.hub.domain.User;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserRepository extends PagingAndSortingRepository<User, Long> {
+import java.time.ZonedDateTime;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-    User findByUid(@Param("uid") String uid);
+import java.util.List;
+import java.util.Optional;
 
-    @Query("SELECT u FROM User u WHERE u.name <> ''")
-    Iterable<User> findAll();
+/**
+ * Spring Data JPA repository for the User entity.
+ */
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query("SELECT u FROM User u WHERE u.isPrivate = false AND u.name <> ''")
-    Iterable<User> findAllPublic();
+    Optional<User> findOneByActivationKey(String activationKey);
+
+    List<User> findAllByActivatedIsFalseAndCreatedDateBefore(ZonedDateTime dateTime);
+
+    Optional<User> findOneByResetKey(String resetKey);
+
+    Optional<User> findOneByEmail(String email);
+
+    Optional<User> findOneByLogin(String login);
+
+    Optional<User> findOneById(Long userId);
+
+    @Override
+    void delete(User t);
+
 }
