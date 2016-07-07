@@ -1,0 +1,21 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "3",
+            "fieldValidateRulesMaxlength": "32"
+        }
+    ],
+    "changelogDate": "20160707113131",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "project",
+    "pagination": "pagination"
+}
