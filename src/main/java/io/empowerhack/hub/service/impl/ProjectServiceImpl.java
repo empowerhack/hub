@@ -68,7 +68,7 @@ public class ProjectServiceImpl implements ProjectService{
     @Transactional(readOnly = true) 
     public Project findOne(Long id) {
         log.debug("Request to get Project : {}", id);
-        Project project = projectRepository.findOne(id);
+        Project project = projectRepository.findOneWithEagerRelationships(id);
         return project;
     }
 

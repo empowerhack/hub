@@ -4,19 +4,19 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myProjectLabel" translate="hubApp.project.home.createOrEditLabel">Create or edit a Project</h4>
+        <h4 class="modal-title" id="myPartnerLabel" translate="hubApp.partner.home.createOrEditLabel">Create or edit a Partner</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.project.id">
+        <div class="form-group" ng-show="vm.partner.id">
             <label for="id" translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.project.id" readonly />
+                    ng-model="vm.partner.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" translate="hubApp.project.name" for="field_name">Name</label>
+            <label class="control-label" translate="hubApp.partner.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
-                    ng-model="vm.project.name"
+                    ng-model="vm.partner.name"
                     required ng-minlength="5" ng-maxlength="16" />
             <div ng-show="editForm.name.$invalid">
                 <p class="help-block"
@@ -33,23 +33,7 @@
                 </p>
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label" translate="hubApp.project.description" for="field_description">Description</label>
-            <input type="text" class="form-control" name="description" id="field_description"
-                    ng-model="vm.project.description"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" translate="hubApp.project.status" for="field_status">Status</label>
-            <input type="text" class="form-control" name="status" id="field_status"
-                    ng-model="vm.project.status"
-                     />
-        </div>
 
-        <div class="form-group">
-            <label translate="hubApp.project.partners" for="field_partners">Partners</label>
-            <select class="form-control" id="field_partners" multiple name="partners" ng-model="vm.project.partners" ng-options="partner as partner.name for partner in vm.partners track by partner.id"></select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

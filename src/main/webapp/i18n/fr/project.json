@@ -18,7 +18,8 @@
             },
             "name": "Name",
             "description": "Description",
-            "status": "Status"
+            "status": "Status",
+            "partners": "Partners"
         }
     }
 }

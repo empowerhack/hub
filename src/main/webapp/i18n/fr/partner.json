@@ -1,0 +1,23 @@
+{
+    "hubApp": {
+        "partner" : {
+            "home": {
+                "title": "Partners",
+                "createLabel": "Créer un nouveau Partner",
+                "createOrEditLabel": "Créer ou éditer un Partner",
+                "search": "Recherche pour Partner"
+            },
+            "created": "Un nouveau Partner a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Partner avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Partner avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Partner {{ id }} ?"
+            },
+            "detail": {
+                "title": "Partner"
+            },
+            "name": "Name",
+            "projects": "Projects"
+        }
+    }
+}

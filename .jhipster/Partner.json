@@ -1,11 +1,11 @@
 {
     "relationships": [
         {
-            "relationshipName": "partners",
-            "otherEntityName": "partner",
+            "relationshipName": "projects",
+            "otherEntityName": "project",
             "relationshipType": "many-to-many",
-            "otherEntityField": "name",
-            "ownerSide": true
+            "ownerSide": false,
+            "otherEntityRelationshipName": "partners"
         }
     ],
     "fields": [
@@ -19,19 +19,11 @@
             ],
             "fieldValidateRulesMinlength": "5",
             "fieldValidateRulesMaxlength": "16"
-        },
-        {
-            "fieldName": "description",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "status",
-            "fieldType": "String"
         }
     ],
-    "changelogDate": "20160707124842",
+    "changelogDate": "20160707171622",
     "dto": "no",
     "service": "serviceImpl",
-    "entityTableName": "project",
+    "entityTableName": "partner",
     "pagination": "pagination"
 }

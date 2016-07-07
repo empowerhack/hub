@@ -1,5 +1,6 @@
 package io.empowerhack.hub.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -12,13 +13,13 @@ import java.util.Set;
 import java.util.Objects;
 
 /**
- * A Project.
+ * A Partner.
  */
 @Entity
-@Table(name = "project")
+@Table(name = "partner")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "project")
-public class Project implements Serializable {
+@Document(indexName = "partner")
+public class Partner implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,18 +32,10 @@ public class Project implements Serializable {
     @Column(name = "name", length = 16, nullable = false)
     private String name;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "status")
-    private String status;
-
-    @ManyToMany
+    @ManyToMany(mappedBy = "partners")
+    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "project_partners",
-               joinColumns = @JoinColumn(name="projects_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="partners_id", referencedColumnName="ID"))
-    private Set<Partner> partners = new HashSet<>();
+    private Set<Project> projects = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -60,28 +53,12 @@ public class Project implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public Set<Project> getProjects() {
+        return projects;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Set<Partner> getPartners() {
-        return partners;
-    }
-
-    public void setPartners(Set<Partner> partners) {
-        this.partners = partners;
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     @Override
@@ -92,11 +69,11 @@ public class Project implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Project project = (Project) o;
-        if(project.id == null || id == null) {
+        Partner partner = (Partner) o;
+        if(partner.id == null || id == null) {
             return false;
         }
-        return Objects.equals(id, project.id);
+        return Objects.equals(id, partner.id);
     }
 
     @Override
@@ -106,11 +83,9 @@ public class Project implements Serializable {
 
     @Override
     public String toString() {
-        return "Project{" +
+        return "Partner{" +
             "id=" + id +
             ", name='" + name + "'" +
-            ", description='" + description + "'" +
-            ", status='" + status + "'" +
             '}';
     }
 }

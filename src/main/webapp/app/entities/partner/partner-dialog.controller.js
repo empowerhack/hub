@@ -3,17 +3,17 @@
 
     angular
         .module('hubApp')
-        .controller('ProjectDialogController', ProjectDialogController);
+        .controller('PartnerDialogController', PartnerDialogController);
 
-    ProjectDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Project', 'Partner'];
+    PartnerDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Partner', 'Project'];
 
-    function ProjectDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Project, Partner) {
+    function PartnerDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Partner, Project) {
         var vm = this;
 
-        vm.project = entity;
+        vm.partner = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.partners = Partner.query();
+        vm.projects = Project.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -25,15 +25,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.project.id !== null) {
-                Project.update(vm.project, onSaveSuccess, onSaveError);
+            if (vm.partner.id !== null) {
+                Partner.update(vm.partner, onSaveSuccess, onSaveError);
             } else {
-                Project.save(vm.project, onSaveSuccess, onSaveError);
+                Partner.save(vm.partner, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('hubApp:projectUpdate', result);
+            $scope.$emit('hubApp:partnerUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

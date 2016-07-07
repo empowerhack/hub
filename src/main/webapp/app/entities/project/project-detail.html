@@ -16,6 +16,12 @@
         <dd>
             <span>{{vm.project.status}}</span>
         </dd>
+        <dt><span translate="hubApp.project.partners">Partners</span></dt>
+        <dd>
+            <span ng-repeat="partners in vm.project.partners">
+                <a ui-sref="partner-detail({id: {{partners.id}}})">{{partners.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
 
     <button type="submit"

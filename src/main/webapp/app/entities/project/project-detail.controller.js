@@ -5,9 +5,9 @@
         .module('hubApp')
         .controller('ProjectDetailController', ProjectDetailController);
 
-    ProjectDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Project'];
+    ProjectDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Project', 'Partner'];
 
-    function ProjectDetailController($scope, $rootScope, $stateParams, entity, Project) {
+    function ProjectDetailController($scope, $rootScope, $stateParams, entity, Project, Partner) {
         var vm = this;
 
         vm.project = entity;

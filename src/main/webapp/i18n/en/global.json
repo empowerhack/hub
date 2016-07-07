@@ -8,6 +8,7 @@
             "entities": {
                 "main": "Entities",
                 "project": "Project",
+                "partner": "Partner",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
