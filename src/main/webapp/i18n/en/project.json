@@ -20,6 +20,7 @@
             "description": "Description",
             "status": "Status",
             "pathToImage": "Path To Image",
+            "views": "Views",
             "partners": "Partners",
             "tags": "Tags"
         }

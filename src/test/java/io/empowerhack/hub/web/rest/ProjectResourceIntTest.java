@@ -52,6 +52,9 @@ public class ProjectResourceIntTest {
     private static final String DEFAULT_PATH_TO_IMAGE = "AAAAA";
     private static final String UPDATED_PATH_TO_IMAGE = "BBBBB";
 
+    private static final Long DEFAULT_VIEWS = 1L;
+    private static final Long UPDATED_VIEWS = 2L;
+
     @Inject
     private ProjectRepository projectRepository;
 
@@ -89,6 +92,7 @@ public class ProjectResourceIntTest {
         project.setDescription(DEFAULT_DESCRIPTION);
         project.setStatus(DEFAULT_STATUS);
         project.setPathToImage(DEFAULT_PATH_TO_IMAGE);
+        project.setViews(DEFAULT_VIEWS);
     }
 
     @Test
@@ -111,6 +115,7 @@ public class ProjectResourceIntTest {
         assertThat(testProject.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testProject.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testProject.getPathToImage()).isEqualTo(DEFAULT_PATH_TO_IMAGE);
+        assertThat(testProject.getViews()).isEqualTo(DEFAULT_VIEWS);
 
         // Validate the Project in ElasticSearch
         Project projectEs = projectSearchRepository.findOne(testProject.getId());
@@ -149,7 +154,8 @@ public class ProjectResourceIntTest {
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
                 .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
                 .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-                .andExpect(jsonPath("$.[*].pathToImage").value(hasItem(DEFAULT_PATH_TO_IMAGE.toString())));
+                .andExpect(jsonPath("$.[*].pathToImage").value(hasItem(DEFAULT_PATH_TO_IMAGE.toString())))
+                .andExpect(jsonPath("$.[*].views").value(hasItem(DEFAULT_VIEWS.intValue())));
     }
 
     @Test
@@ -166,7 +172,8 @@ public class ProjectResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.pathToImage").value(DEFAULT_PATH_TO_IMAGE.toString()));
+            .andExpect(jsonPath("$.pathToImage").value(DEFAULT_PATH_TO_IMAGE.toString()))
+            .andExpect(jsonPath("$.views").value(DEFAULT_VIEWS.intValue()));
     }
 
     @Test
@@ -192,6 +199,7 @@ public class ProjectResourceIntTest {
         updatedProject.setDescription(UPDATED_DESCRIPTION);
         updatedProject.setStatus(UPDATED_STATUS);
         updatedProject.setPathToImage(UPDATED_PATH_TO_IMAGE);
+        updatedProject.setViews(UPDATED_VIEWS);
 
         restProjectMockMvc.perform(put("/api/projects")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -206,6 +214,7 @@ public class ProjectResourceIntTest {
         assertThat(testProject.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testProject.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testProject.getPathToImage()).isEqualTo(UPDATED_PATH_TO_IMAGE);
+        assertThat(testProject.getViews()).isEqualTo(UPDATED_VIEWS);
 
         // Validate the Project in ElasticSearch
         Project projectEs = projectSearchRepository.findOne(testProject.getId());
@@ -248,6 +257,7 @@ public class ProjectResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].pathToImage").value(hasItem(DEFAULT_PATH_TO_IMAGE.toString())));
+            .andExpect(jsonPath("$.[*].pathToImage").value(hasItem(DEFAULT_PATH_TO_IMAGE.toString())))
+            .andExpect(jsonPath("$.[*].views").value(hasItem(DEFAULT_VIEWS.intValue())));
     }
 }

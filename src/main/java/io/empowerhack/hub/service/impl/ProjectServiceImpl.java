@@ -26,16 +26,16 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class ProjectServiceImpl implements ProjectService{
 
     private final Logger log = LoggerFactory.getLogger(ProjectServiceImpl.class);
-    
+
     @Inject
     private ProjectRepository projectRepository;
-    
+
     @Inject
     private ProjectSearchRepository projectSearchRepository;
-    
+
     /**
      * Save a project.
-     * 
+     *
      * @param project the entity to save
      * @return the persisted entity
      */
@@ -48,14 +48,14 @@ public class ProjectServiceImpl implements ProjectService{
 
     /**
      *  Get all the projects.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Project> findAll(Pageable pageable) {
         log.debug("Request to get all Projects");
-        Page<Project> result = projectRepository.findAll(pageable); 
+        Page<Project> result = projectRepository.findAll(pageable);
         return result;
     }
 
@@ -65,16 +65,19 @@ public class ProjectServiceImpl implements ProjectService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional
     public Project findOne(Long id) {
         log.debug("Request to get Project : {}", id);
         Project project = projectRepository.findOneWithEagerRelationships(id);
+        project.incrementViews();
+        save(project);
+
         return project;
     }
 
     /**
      *  Delete the  project by id.
-     *  
+     *
      *  @param id the id of the entity
      */
     public void delete(Long id) {

@@ -24,22 +24,26 @@
             <column name="name" type="varchar(16)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="status" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="path_to_image" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
+            <column name="views" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
+
         <createTable tableName="project_partners">
             <column name="partners_id" type="bigint">
                 <constraints nullable="false"/>
@@ -50,7 +54,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="projects_id, partners_id" tableName="project_partners"/>
-        
+
         <createTable tableName="project_tags">
             <column name="tags_id" type="bigint">
                 <constraints nullable="false"/>
@@ -61,6 +65,6 @@
         </createTable>
 
         <addPrimaryKey columnNames="projects_id, tags_id" tableName="project_tags"/>
-        
+
     </changeSet>
 </databaseChangeLog>

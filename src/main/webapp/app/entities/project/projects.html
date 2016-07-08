@@ -38,6 +38,9 @@
                     <span jh-sort-by="status">
                         <span translate="hubApp.project.status">Status</span> <span class="glyphicon glyphicon-sort"></span>
                     </span>
+                    <span jh-sort-by="views">
+                        <span translate="hubApp.project.views">Views</span> <span class="glyphicon glyphicon-sort"></span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -49,6 +52,7 @@
         </div>
         <div class="col-xs-12 col-md-5">
             <a ui-sref="project-detail({id:project.id})">{{project.name}}</a>
+            <span class="label label-default">Views: {{project.views}}</span>
         </div>
         <div class="col-xs-12 col-md-5">
             <div class="btn-group flex-btn-group-container">

@@ -40,6 +40,9 @@ public class Project implements Serializable {
     @Column(name = "path_to_image")
     private String pathToImage;
 
+    @Column(name = "views")
+    private Long views = 0L;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "project_partners",
@@ -110,6 +113,18 @@ public class Project implements Serializable {
         this.tags = tags;
     }
 
+    public Long getViews() {
+        return views;
+    }
+
+    public void setViews(Long views) {
+        this.views = views;
+    }
+
+    public void incrementViews() {
+        this.views++;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -138,6 +153,7 @@ public class Project implements Serializable {
             ", description='" + description + "'" +
             ", status='" + status + "'" +
             ", pathToImage='" + pathToImage + "'" +
+            ", views='" + views + "'" +
             '}';
     }
 }

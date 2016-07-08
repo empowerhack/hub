@@ -38,6 +38,10 @@
         {
             "fieldName": "pathToImage",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "views",
+            "fieldType": "Long"
         }
     ],
     "changelogDate": "20160707124842",
