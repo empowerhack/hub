@@ -40,14 +40,14 @@ public class Project implements Serializable {
     @Column(name = "path_to_image")
     private String pathToImage;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "project_partners",
                joinColumns = @JoinColumn(name="projects_id", referencedColumnName="ID"),
                inverseJoinColumns = @JoinColumn(name="partners_id", referencedColumnName="ID"))
     private Set<Partner> partners = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "project_tags",
                joinColumns = @JoinColumn(name="projects_id", referencedColumnName="ID"),

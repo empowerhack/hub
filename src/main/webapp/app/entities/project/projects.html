@@ -28,15 +28,15 @@
                     </div>
                 </form>
                 <div jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()" class="prj-sort">
-                    Sort by: 
+                    Sort by:
                     <span jh-sort-by="name">
-                        <span translate="hubApp.project.name">Name</span> <span class="glyphicon glyphicon-sort"></span> 
+                        <span translate="hubApp.project.name">Name</span> <span class="glyphicon glyphicon-sort"></span>
                     </span>
                     <span jh-sort-by="description">
-                        <span translate="hubApp.project.description">Description</span> <span class="glyphicon glyphicon-sort"></span> 
+                        <span translate="hubApp.project.description">Description</span> <span class="glyphicon glyphicon-sort"></span>
                     </span>
                     <span jh-sort-by="status">
-                        <span translate="hubApp.project.status">Status</span> <span class="glyphicon glyphicon-sort"></span> 
+                        <span translate="hubApp.project.status">Status</span> <span class="glyphicon glyphicon-sort"></span>
                     </span>
                 </div>
             </div>
@@ -49,7 +49,7 @@
         </div>
         <div class="col-xs-12 col-md-5">
             <a ui-sref="project-detail({id:project.id})">{{project.name}}</a>
-        </div>      
+        </div>
         <div class="col-xs-12 col-md-5">
             <div class="btn-group flex-btn-group-container">
                 <button type="submit"
@@ -76,9 +76,10 @@
             {{project.description}}
         </div>
         <div class="col-xs-12 col-md-10 prj-tags">
-            <span>Tag 1</span>
-            <span>Tag 2</span>
-        </div> 
+            <div ng-repeat="tags in project.tags">
+                <span>{{tags.name}}</span>
+            </div>
+        </div>
     </div>
     <div class="text-center">
         <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
