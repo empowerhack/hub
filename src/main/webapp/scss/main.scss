@@ -12,7 +12,7 @@ Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 }
 
 /* ==========================================================================
-Developement Ribbon
+Development Ribbon
 ========================================================================== */
 .ribbon {
     background-color: #a00;
@@ -284,6 +284,10 @@ entity tables helpers
    justify-content: flex-end;
 }
 
+/* ==========================================================================
+Projects page specific styling
+========================================================================== */
+
 .prj-row {
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -294,54 +298,54 @@ entity tables helpers
         height: auto;
         width: auto;
     }
-    .prj-tags span {
+    .prj-tags div {
         display: inline-block;
-        height:24px;
-        line-height:24px;
-        font-size: 11px;
-        margin-left: 14px;
-        margin-right: 5px;
-        margin-top: 10px;
-        padding:0 10px 0 12px;
-        background:#0089e0;
-        color:#fff;
-        -moz-border-radius-bottomright:4px;
-        -webkit-border-bottom-right-radius:4px; 
-        border-bottom-right-radius:4px;
-        -moz-border-radius-topright:4px;
-        -webkit-border-top-right-radius:4px;    
-        border-top-right-radius:4px;
-        position: relative;
-        &:before {
-            content:"";
-            position:absolute;
-            top:0;
-            left:-12px;
-            width:0;
-            height:0;
-            border-color:transparent #0089e0 transparent transparent;
-            border-style:solid;
-            border-width:12px 12px 12px 0;      
-        }
-        &:after {
-            content:"";
-            position:absolute;
-            top:10px;
-            left:0;
-            width:4px;
-            height:4px;
-            -moz-border-radius:2px;
-            -webkit-border-radius:2px;
-            border-radius:2px;
-            background:#fff;
-            -moz-box-shadow:-1px -1px 2px #004977;
-            -webkit-box-shadow:-1px -1px 2px #004977;
-            box-shadow:-1px -1px 2px #004977;
-        }
-        &:hover {
-            background:#555;
+        span {
+            display: inline-block;
+            height:24px;
+            line-height:24px;
+            font-size: 11px;
+            margin-left: 14px;
+            margin-right: 5px;
+            margin-top: 10px;
+            padding:0 10px 0 12px;
+            background:#0089e0;
+            color:#fff;
+            -moz-border-radius-bottomright:4px;
+            -webkit-border-bottom-right-radius:4px; 
+            border-bottom-right-radius:4px;
+            -moz-border-radius-topright:4px;
+            -webkit-border-top-right-radius:4px;    
+            border-top-right-radius:4px;
+            position: relative;
             &:before {
-                border-color:transparent #555 transparent transparent;
+                content:"";
+                position:absolute;
+                top:0;
+                left:-12px;
+                width:0;
+                height:0;
+                border-color:transparent #0089e0 transparent transparent;
+                border-style:solid;
+                border-width:12px 12px 12px 0;      
+            }
+            &:after {
+                content:"";
+                position:absolute;
+                top:10px;
+                left:0;
+                width:4px;
+                height:4px;
+                -moz-border-radius:2px;
+                -webkit-border-radius:2px;
+                border-radius:2px;
+                background:#fff;
+            }
+            &:hover {
+                background:#555;
+                &:before {
+                    border-color:transparent #555 transparent transparent;
+                }
             }
         }
     }
