@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="project.new" >
+                <button class="btn btn-primary" ui-sref="project.new" has-authority="ROLE_ADMIN">
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="hidden-xs"  translate="hubApp.project.home.createLabel">
                         Create new Project
@@ -38,9 +38,6 @@
                     <span jh-sort-by="status">
                         <span translate="hubApp.project.status">Status</span> <span class="glyphicon glyphicon-sort"></span>
                     </span>
-                    <span jh-sort-by="views">
-                        <span translate="hubApp.project.views">Views</span> <span class="glyphicon glyphicon-sort"></span>
-                    </span>
                 </div>
             </div>
         </div>
@@ -52,7 +49,7 @@
         </div>
         <div class="col-xs-12 col-md-5">
             <a ui-sref="project-detail({id:project.id})">{{project.name}}</a>
-            <span class="label label-default">Views: {{project.views}}</span>
+            <span class="label label-default">{{project.views}}</span>
         </div>
         <div class="col-xs-12 col-md-5">
             <div class="btn-group flex-btn-group-container">
@@ -70,7 +67,8 @@
                 </button>
                 <button type="submit"
                         ui-sref="project.delete({id:project.id})"
-                        class="btn btn-danger btn-sm">
+                        class="btn btn-danger btn-sm"
+                        has-authority="ROLE_ADMIN">
                     <span class="glyphicon glyphicon-remove-circle"></span>
                     <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                 </button>

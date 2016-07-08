@@ -2,6 +2,7 @@ package io.empowerhack.hub.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import io.empowerhack.hub.domain.Project;
+import io.empowerhack.hub.security.AuthoritiesConstants;
 import io.empowerhack.hub.service.ProjectService;
 import io.empowerhack.hub.web.rest.util.HeaderUtil;
 import io.empowerhack.hub.web.rest.util.PaginationUtil;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -34,10 +36,10 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class ProjectResource {
 
     private final Logger log = LoggerFactory.getLogger(ProjectResource.class);
-        
+
     @Inject
     private ProjectService projectService;
-    
+
     /**
      * POST  /projects : Create a new project.
      *
@@ -49,6 +51,7 @@ public class ProjectResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<Project> createProject(@Valid @RequestBody Project project) throws URISyntaxException {
         log.debug("REST request to save Project : {}", project);
         if (project.getId() != null) {
@@ -95,10 +98,11 @@ public class ProjectResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     public ResponseEntity<List<Project>> getAllProjects(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Projects");
-        Page<Project> page = projectService.findAll(pageable); 
+        Page<Project> page = projectService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/projects");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -133,6 +137,7 @@ public class ProjectResource {
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
         log.debug("REST request to delete Project : {}", id);
         projectService.delete(id);
