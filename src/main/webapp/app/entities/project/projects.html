@@ -44,12 +44,11 @@
     </div>
     <br/>
     <div ng-repeat="project in vm.projects track by project.id" class="row prj-row">
-        <div class="col-xs-12 col-md-2">
+        <div class="col-xs-12 col-md-2 img-wrap">
             <img ng-src="{{project.pathToImage}}">
         </div>
-        <div class="col-xs-12 col-md-5">
+        <div class="col-xs-12 col-md-5 prj-title-wrap">
             <a ui-sref="project-detail({id:project.id})">{{project.name}}</a>
-            <span class="label label-default">{{project.views}}</span>
         </div>
         <div class="col-xs-12 col-md-5">
             <div class="btn-group flex-btn-group-container">
@@ -75,17 +74,23 @@
                 </button>
             </div>
         </div>
-        <div class="col-xs-12 col-md-10">
+        <div class="col-xs-12 col-md-10 prj-field">
             {{project.description}}
         </div>
-        <div class="col-xs-12 col-md-10 prj-tags">
-            <div ng-repeat="tags in project.tags">
-                <span>{{tags.name}}</span>
+        <div class="prj-footer col-xs-12 col-md-10 ">
+            <div class="prj-views">
+                <span class="glyphicon glyphicon-eye-open"></span> 
+                {{project.views}}
             </div>
-        </div>
-        <div class="col-xs-12 col-md-10 prj-tags">
-            <div ng-repeat="partner in project.partners">
-                <span>{{partner.name}}</span>
+            <div class="prj-tags">
+                <div ng-repeat="tags in project.tags">
+                    <span>{{tags.name}}</span>
+                </div>
+            </div>
+            <div class="prj-tags">
+                <div ng-repeat="partner in project.partners">
+                    <span>{{partner.name}}</span>
+                </div>
             </div>
         </div>
     </div>
